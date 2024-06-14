@@ -1,26 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import useAuth from "../Hooks/useAuth";
+import useAuth from "../../Hooks/useAuth";
 const Navbar = () => {
   // const isAdmin= true;
   // const isInstructor= true;
   // const { user, logOut } = useContext(AuthContext);
-  // const handleLogOut = () => {
-  //     logOut()
+  // const handleLogout = () => {
+  //     logout()
   //         .then()
   //         .catch(error => console.log(error));
   // }
 
-  //   const { logout, user } = useAuth();
+  const { logout, user } = useAuth();
 
-  //   const handleLogout = async () => {
-  //     await logout();
-  //   };
+  const handleLogout = async () => {
+    await logout();
+  };
 
   const NavItems = (
     <>
       <li>
-        <Link to="/" className="ml-10 text-white font-bold">
+        <Link to="/" className=" text-white font-bold lg:ms-44">
           Home
         </Link>
       </li>
@@ -34,59 +34,54 @@ const Navbar = () => {
           <span className=" text-white font-bold">Products</span>{" "}
         </Link>
       </li>
-      {/* {user?.email ? */}
-      <>
-        <li tabIndex={0}>
-          <details className=" text-fuchsia-white font-bold">
-            <summary>Dashboard</summary>
-            <ul className="p-2 z-50 text-cyan-800">
-              {/* {isAdmin?<> */}
-              <li>
-                <Link to="/dashboard1">Admin Dasboard</Link>
-              </li>
-              {/* </>:
+      {user ? (
+        <>
+          <li tabIndex={0}>
+            <details className=" text-fuchsia-white font-bold ">
+              <summary>Dashboard</summary>
+              <ul className="p-2 z-50 text-cyan-800">
+                {/* {isAdmin?<> */}
+                <li>
+                  <Link to="/dashboard1">Admin Dasboard</Link>
+                </li>
+                {/* </>:
                      <> */}
-              {/* {isInstructor?<> */}
-              <li>
-                <Link to="/dashboard2">SELL Dashboard</Link>
-              </li>
-              {/* </> */}
-              {/* //  : */}
+                {/* {isInstructor?<> */}
+                <li>
+                  <Link to="/dashboard2">Selling Dashboard</Link>
+                </li>
+                {/* </> */}
+                {/* //  : */}
 
-              <li>
-                <Link to="/dashboard3">BUY Dasboard</Link>
-              </li>
-              {/* //  } */}
-              {/* </> */}
-              {/* } */}
-            </ul>
-          </details>
-        </li>
+                <li>
+                  <Link to="/dashboard3">Buying Dasboard</Link>
+                </li>
+                {/* //  } */}
+                {/* </> */}
+                {/* } */}
+              </ul>
+            </details>
+          </li>
 
+          <li>
+            <span className="text-white font-bold lg:ms-28">
+              UserName : {user?.displayName}
+            </span>
+          </li>
+
+          <li>
+            <button onClick={handleLogout} className=" text-white font-bold ">
+              Log Out
+            </button>
+          </li>
+        </>
+      ) : (
         <li>
-          <button
-            // onClick={handleLogOut}
-            className=" text-white font-bold"
-          >
-            Log Out
-          </button>
+          <Link to="/login" className="text-xl  font-bold">
+            Login
+          </Link>
         </li>
-        <li>
-          <span className="text-white font-bold">
-            UserName
-            {/* {user?.displayName} */}
-          </span>
-        </li>
-      </>
-
-      {/* :{" "} */}
-      <li>
-        <Link to="/login" className=" text-white font-bold">
-          Login
-        </Link>
-      </li>
-
-      {/* } */}
+      )}
     </>
   );
 
@@ -119,73 +114,19 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-cyan-800 text-white rounded-box w-52 "
           >
             {NavItems}
-
-            {/* {!user && ( */}
-            {/* <>
-                <li>
-                  <Link to="/login">
-                    <a>Login</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/signin">
-                    <a>Register</a>
-                  </Link>
-                </li>
-              </> */}
-            {/* )} */}
-
-            {/* {user && ( */}
-            {/* <li>
-              
-                <button className="btn">
-                  Logout
-                </button>
-              </li> */}
-            {/* )} */}
           </ul>
         </div>
-        <a className="btn btn-ghost text-base-100 text-2xl font-serif font-bold">
+        <a className="btn btn-ghost text-base-100 text-2xl font-serif font-bold lg:px-4">
           DecorAPA
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="text-white  menu menu-horizontal px-1">
-          {NavItems}
-
-          {/* if user here */}
-          {/* {user && ( */}
-          {/* <li>
-              <Link to="/dashboard">
-                <a>DashBoard</a>
-              </Link>
-            </li> */}
-          {/* )} */}
-
-          {/* {!user && ( */}
-          <>
-            <li>
-              <Link to="/signin" className="font-bold">
-                <a>Register</a>
-              </Link>
-            </li>
-          </>
-          {/* )} */}
-        </ul>
+        <ul className="text-white  menu menu-horizontal px-1">{NavItems}</ul>
       </div>
       <div className="navbar-end">
-        {/* {user && ( */}
-        {/* <button
-          
-            className=" text-white font-serif font-bold me-5"
-          >
-            Logout
-          </button> */}
-        {/* )} */}
         <div className="avatar">
           <div className="w-12 rounded-full border-2 border-black">
-            {/* user?.photoURL || */}
-            <img src={"/public/placeholder.jpg"} />
+            <img src={user?.photoURL || "/public/placeholder.jpg"} />
           </div>
         </div>
       </div>

@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
-// import DashBoardLayout from "../Layout/DashBoardLayout";
+
 import Home from "../Pages/Home";
 
 import Login from "../Pages/Login";
 import ErrorPage from "../Pages/ErrorPage";
 import Users from "../Pages/Users";
-import Products from "../Pages/Products";
+import Products from "../Componants/HOME/Products";
 
 import Signin from "../Pages/Signin";
 // import Handpainted from "./../Pages/Handpainted";
@@ -14,12 +14,13 @@ import Signin from "../Pages/Signin";
 // import Adult from "./../Pages/Adult";
 // import Gallery from "./../Pages/Gallery";
 // import BagsDetails from "./../Pages/BagsDetails";
-// import DashBoard from "./../Pages/DashBoard";
 
-// import PrivateRoutes from "./Private/PrivateRoutes";
-// import AllBags from "../Pages/AllBags";
-// import AddBag from "../Pages/AddBag";
-// import EditBags from "../Pages/EditBags";
+import DashBoardSideNavbar from "../Shared/Navbar/DashBoardSideNavebar";
+import AllUserTable from "../DashBoard/AllUserTable";
+import PrivateRoutes from "./PrivateRoute/PrivateRoutes";
+import AddProduct from "../DashBoard/AddProduct";
+import EditProducts from "../DashBoard/EditProducts";
+import AllProducts from "../DashBoard/AllProducts";
 
 const router = createBrowserRouter([
   {
@@ -49,15 +50,6 @@ const router = createBrowserRouter([
         element: <Products></Products>,
       },
 
-      // {
-      //   path: "/Kids",
-      //   element: <Kids></Kids>,
-      // },
-      // {
-      //   path: "/Adult",
-      //   element: <Adult></Adult>,
-      // },
-
       {
         path: "/login",
         element: <Login></Login>,
@@ -69,47 +61,48 @@ const router = createBrowserRouter([
     ],
   },
 
-  // {
-  //   path: "dashboard",
-  //   element: <DashBoardLayout></DashBoardLayout>,
-  //   errorElement: <ErrorPage />,
-  //   children: [
-  //     {
-  //       path: "home",
-  //       element: (
-  //         <PrivateRoutes>
-  //           <DashBoard></DashBoard>
-  //         </PrivateRoutes>
-  //       ),
-  //     },
-  //     {
-  //       path: "dashboard/all-bags",
-  //       element: (
-  //         <PrivateRoutes>
-  //           <AllBags></AllBags>
-  //         </PrivateRoutes>
-  //       ),
-  //     },
-  //     {
-  //       path: "dashboard/add-bags",
-  //       element: (
-  //         <PrivateRoutes>
-  //           <AddBag></AddBag>
-  //         </PrivateRoutes>
-  //       ),
-  //     },
-  //     {
-  //       path: "dashboard/all-bags/edit/:id",
-  //       element: (
-  //         <PrivateRoutes>
-  //           <EditBags></EditBags>
-  //         </PrivateRoutes>
-  //       ),
+  {
+    path: "dashboard1",
+    element: <DashBoardSideNavbar></DashBoardSideNavbar>,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "home",
+        element: (
+          <PrivateRoutes>
+            <AllUserTable></AllUserTable>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "dashboard/all-products",
+        element: (
+          <PrivateRoutes>
+            <AllProducts></AllProducts>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "dashboard/add-products",
+        element: (
+          <PrivateRoutes>
+            <AddProduct></AddProduct>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "dashboard/all-products",
+        // /edit/:id
+        element: (
+          <PrivateRoutes>
+            <EditProducts></EditProducts>
+          </PrivateRoutes>
+        ),
 
-  //       loader: ({ params }) =>
-  //         fetch(`http://localhost:3000/bags/${params.id}`),
-  //     },
-  //   ],
-  // },
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:3000/bags/${params.id}`),
+      },
+    ],
+  },
 ]);
 export default router;

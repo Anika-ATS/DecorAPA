@@ -3,7 +3,7 @@ import React from "react";
 const Accordian = () => {
   return (
     <div className="m-5 gap-3 mb-5">
-      <div className="collapse collapse-arrow bg-gradient-to-r from-[#64d9b9] to-[#1d2939] mb-3 ">
+      <div className="collapse collapse-arrow bg-gradient-to-r from-cyan-900 to-teal-300 mb-3 ">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title text-xl font-medium  text-white">
           What is our goal?
@@ -16,7 +16,7 @@ const Accordian = () => {
           </p>
         </div>
       </div>
-      <div className="collapse collapse-arrow bg-gradient-to-r from-[#64d9b9] to-[#1d2939] mb-3">
+      <div className="collapse collapse-arrow bg-gradient-to-r from-cyan-900 to-teal-300 mb-3">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title text-xl font-medium  text-white">
           Who is our main customer?
@@ -29,7 +29,7 @@ const Accordian = () => {
           </p>
         </div>
       </div>
-      <div className="collapse collapse-arrow bg-gradient-to-r from-[#64d9b9] to-[#1d2939] ">
+      <div className="collapse collapse-arrow bg-gradient-to-r from-cyan-900 to-teal-300 ">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title text-xl font-medium  text-white">
           What we have in our shop?
